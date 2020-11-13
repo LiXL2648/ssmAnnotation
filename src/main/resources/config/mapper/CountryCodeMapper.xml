@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.ss.dao.CountryCodeMapper">
+  <resultMap id="BaseResultMap" type="com.ss.entities.CountryCode">
+    <id column="id" jdbcType="BIGINT" property="id" />
+    <result column="country_code" jdbcType="VARCHAR" property="countryCode" />
+    <result column="country_name" jdbcType="VARCHAR" property="countryName" />
+    <result column="note" jdbcType="VARCHAR" property="note" />
+    <result column="indb_time" jdbcType="TIMESTAMP" property="indbTime" />
+    <result column="update_time" jdbcType="TIMESTAMP" property="updateTime" />
+  </resultMap>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Long">
+    delete from country_code
+    where id = #{id,jdbcType=BIGINT}
+  </delete>
+  <insert id="insert" parameterType="com.ss.entities.CountryCode">
+    insert into country_code (id, country_code, country_name, 
+      note, indb_time, update_time
+      )
+    values (#{id,jdbcType=BIGINT}, #{countryCode,jdbcType=VARCHAR}, #{countryName,jdbcType=VARCHAR}, 
+      #{note,jdbcType=VARCHAR}, #{indbTime,jdbcType=TIMESTAMP}, #{updateTime,jdbcType=TIMESTAMP}
+      )
+  </insert>
+  <update id="updateByPrimaryKey" parameterType="com.ss.entities.CountryCode">
+    update country_code
+    set country_code = #{countryCode,jdbcType=VARCHAR},
+      country_name = #{countryName,jdbcType=VARCHAR},
+      note = #{note,jdbcType=VARCHAR},
+      indb_time = #{indbTime,jdbcType=TIMESTAMP},
+      update_time = #{updateTime,jdbcType=TIMESTAMP}
+    where id = #{id,jdbcType=BIGINT}
+  </update>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Long" resultMap="BaseResultMap">
+    select id, country_code, country_name, note, indb_time, update_time
+    from country_code
+    where id = #{id,jdbcType=BIGINT}
+  </select>
+  <select id="selectAll" resultMap="BaseResultMap">
+    select id, country_code, country_name, note, indb_time, update_time
+    from country_code
+  </select>
+</mapper>

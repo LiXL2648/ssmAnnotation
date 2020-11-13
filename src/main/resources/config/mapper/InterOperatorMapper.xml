@@ -1,0 +1,60 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.ss.dao.InterOperatorMapper">
+  <resultMap id="BaseResultMap" type="com.ss.entities.InterOperator">
+    <id column="id" jdbcType="BIGINT" property="id" />
+    <result column="country_code" jdbcType="VARCHAR" property="countryCode" />
+    <result column="operator_name" jdbcType="VARCHAR" property="operatorName" />
+    <result column="address" jdbcType="VARCHAR" property="address" />
+    <result column="operator_code" jdbcType="VARCHAR" property="operatorCode" />
+    <result column="contact_name" jdbcType="VARCHAR" property="contactName" />
+    <result column="contact_phone" jdbcType="VARCHAR" property="contactPhone" />
+    <result column="contact_fax" jdbcType="VARCHAR" property="contactFax" />
+    <result column="contact_email" jdbcType="VARCHAR" property="contactEmail" />
+    <result column="note" jdbcType="VARCHAR" property="note" />
+    <result column="indb_time" jdbcType="TIMESTAMP" property="indbTime" />
+    <result column="update_time" jdbcType="TIMESTAMP" property="updateTime" />
+  </resultMap>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Long">
+    delete from inter_operator
+    where id = #{id,jdbcType=BIGINT}
+  </delete>
+  <insert id="insert" parameterType="com.ss.entities.InterOperator">
+    insert into inter_operator (id, country_code, operator_name, 
+      address, operator_code, contact_name, 
+      contact_phone, contact_fax, contact_email, 
+      note, indb_time, update_time
+      )
+    values (#{id,jdbcType=BIGINT}, #{countryCode,jdbcType=VARCHAR}, #{operatorName,jdbcType=VARCHAR}, 
+      #{address,jdbcType=VARCHAR}, #{operatorCode,jdbcType=VARCHAR}, #{contactName,jdbcType=VARCHAR}, 
+      #{contactPhone,jdbcType=VARCHAR}, #{contactFax,jdbcType=VARCHAR}, #{contactEmail,jdbcType=VARCHAR}, 
+      #{note,jdbcType=VARCHAR}, #{indbTime,jdbcType=TIMESTAMP}, #{updateTime,jdbcType=TIMESTAMP}
+      )
+  </insert>
+  <update id="updateByPrimaryKey" parameterType="com.ss.entities.InterOperator">
+    update inter_operator
+    set country_code = #{countryCode,jdbcType=VARCHAR},
+      operator_name = #{operatorName,jdbcType=VARCHAR},
+      address = #{address,jdbcType=VARCHAR},
+      operator_code = #{operatorCode,jdbcType=VARCHAR},
+      contact_name = #{contactName,jdbcType=VARCHAR},
+      contact_phone = #{contactPhone,jdbcType=VARCHAR},
+      contact_fax = #{contactFax,jdbcType=VARCHAR},
+      contact_email = #{contactEmail,jdbcType=VARCHAR},
+      note = #{note,jdbcType=VARCHAR},
+      indb_time = #{indbTime,jdbcType=TIMESTAMP},
+      update_time = #{updateTime,jdbcType=TIMESTAMP}
+    where id = #{id,jdbcType=BIGINT}
+  </update>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Long" resultMap="BaseResultMap">
+    select id, country_code, operator_name, address, operator_code, contact_name, contact_phone, 
+    contact_fax, contact_email, note, indb_time, update_time
+    from inter_operator
+    where id = #{id,jdbcType=BIGINT}
+  </select>
+  <select id="selectAll" resultMap="BaseResultMap">
+    select id, country_code, operator_name, address, operator_code, contact_name, contact_phone, 
+    contact_fax, contact_email, note, indb_time, update_time
+    from inter_operator
+  </select>
+</mapper>

@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.ss.dao.MccMncMapper">
+  <resultMap id="BaseResultMap" type="com.ss.entities.MccMnc">
+    <id column="id" jdbcType="BIGINT" property="id" />
+    <result column="mcc_mnc" jdbcType="VARCHAR" property="mccMnc" />
+    <result column="mcc" jdbcType="VARCHAR" property="mcc" />
+    <result column="mnc" jdbcType="VARCHAR" property="mnc" />
+    <result column="network" jdbcType="VARCHAR" property="network" />
+    <result column="note" jdbcType="VARCHAR" property="note" />
+    <result column="mcc_mnc_status" jdbcType="INTEGER" property="mccMncStatus" />
+    <result column="indb_time" jdbcType="TIMESTAMP" property="indbTime" />
+    <result column="update_time" jdbcType="TIMESTAMP" property="updateTime" />
+  </resultMap>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Long">
+    delete from mcc_mnc
+    where id = #{id,jdbcType=BIGINT}
+  </delete>
+  <insert id="insert" parameterType="com.ss.entities.MccMnc">
+    insert into mcc_mnc (id, mcc_mnc, mcc, 
+      mnc, network, note, 
+      mcc_mnc_status, indb_time, update_time
+      )
+    values (#{id,jdbcType=BIGINT}, #{mccMnc,jdbcType=VARCHAR}, #{mcc,jdbcType=VARCHAR}, 
+      #{mnc,jdbcType=VARCHAR}, #{network,jdbcType=VARCHAR}, #{note,jdbcType=VARCHAR}, 
+      #{mccMncStatus,jdbcType=INTEGER}, #{indbTime,jdbcType=TIMESTAMP}, #{updateTime,jdbcType=TIMESTAMP}
+      )
+  </insert>
+  <update id="updateByPrimaryKey" parameterType="com.ss.entities.MccMnc">
+    update mcc_mnc
+    set mcc_mnc = #{mccMnc,jdbcType=VARCHAR},
+      mcc = #{mcc,jdbcType=VARCHAR},
+      mnc = #{mnc,jdbcType=VARCHAR},
+      network = #{network,jdbcType=VARCHAR},
+      note = #{note,jdbcType=VARCHAR},
+      mcc_mnc_status = #{mccMncStatus,jdbcType=INTEGER},
+      indb_time = #{indbTime,jdbcType=TIMESTAMP},
+      update_time = #{updateTime,jdbcType=TIMESTAMP}
+    where id = #{id,jdbcType=BIGINT}
+  </update>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Long" resultMap="BaseResultMap">
+    select id, mcc_mnc, mcc, mnc, network, note, mcc_mnc_status, indb_time, update_time
+    from mcc_mnc
+    where id = #{id,jdbcType=BIGINT}
+  </select>
+  <select id="selectAll" resultMap="BaseResultMap">
+    select id, mcc_mnc, mcc, mnc, network, note, mcc_mnc_status, indb_time, update_time
+    from mcc_mnc
+  </select>
+</mapper>

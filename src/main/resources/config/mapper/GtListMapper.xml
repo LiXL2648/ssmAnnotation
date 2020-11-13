@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.ss.dao.GtListMapper">
+  <resultMap id="BaseResultMap" type="com.ss.entities.GtList">
+    <id column="id" jdbcType="BIGINT" property="id" />
+    <result column="gt_number" jdbcType="VARCHAR" property="gtNumber" />
+    <result column="note" jdbcType="VARCHAR" property="note" />
+    <result column="gt_status" jdbcType="INTEGER" property="gtStatus" />
+    <result column="country_code_id" jdbcType="BIGINT" property="countryCodeId" />
+    <result column="operator_code_id" jdbcType="BIGINT" property="operatorCodeId" />
+    <result column="indb_time" jdbcType="TIMESTAMP" property="indbTime" />
+    <result column="update_time" jdbcType="TIMESTAMP" property="updateTime" />
+  </resultMap>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Long">
+    delete from gt_list
+    where id = #{id,jdbcType=BIGINT}
+  </delete>
+  <insert id="insert" parameterType="com.ss.entities.GtList">
+    insert into gt_list (id, gt_number, note, 
+      gt_status, country_code_id, operator_code_id, 
+      indb_time, update_time)
+    values (#{id,jdbcType=BIGINT}, #{gtNumber,jdbcType=VARCHAR}, #{note,jdbcType=VARCHAR}, 
+      #{gtStatus,jdbcType=INTEGER}, #{countryCodeId,jdbcType=BIGINT}, #{operatorCodeId,jdbcType=BIGINT}, 
+      #{indbTime,jdbcType=TIMESTAMP}, #{updateTime,jdbcType=TIMESTAMP})
+  </insert>
+  <update id="updateByPrimaryKey" parameterType="com.ss.entities.GtList">
+    update gt_list
+    set gt_number = #{gtNumber,jdbcType=VARCHAR},
+      note = #{note,jdbcType=VARCHAR},
+      gt_status = #{gtStatus,jdbcType=INTEGER},
+      country_code_id = #{countryCodeId,jdbcType=BIGINT},
+      operator_code_id = #{operatorCodeId,jdbcType=BIGINT},
+      indb_time = #{indbTime,jdbcType=TIMESTAMP},
+      update_time = #{updateTime,jdbcType=TIMESTAMP}
+    where id = #{id,jdbcType=BIGINT}
+  </update>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Long" resultMap="BaseResultMap">
+    select id, gt_number, note, gt_status, country_code_id, operator_code_id, indb_time, 
+    update_time
+    from gt_list
+    where id = #{id,jdbcType=BIGINT}
+  </select>
+  <select id="selectAll" resultMap="BaseResultMap">
+    select id, gt_number, note, gt_status, country_code_id, operator_code_id, indb_time, 
+    update_time
+    from gt_list
+  </select>
+</mapper>

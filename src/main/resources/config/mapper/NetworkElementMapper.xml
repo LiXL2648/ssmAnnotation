@@ -1,0 +1,74 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.ss.dao.NetworkElementMapper">
+  <resultMap id="BaseResultMap" type="com.ss.entities.NetworkElement">
+    <id column="id" jdbcType="BIGINT" property="id" />
+    <result column="node_type" jdbcType="VARCHAR" property="nodeType" />
+    <result column="node_id" jdbcType="VARCHAR" property="nodeId" />
+    <result column="gt" jdbcType="VARCHAR" property="gt" />
+    <result column="ip" jdbcType="VARCHAR" property="ip" />
+    <result column="vendor_info" jdbcType="VARCHAR" property="vendorInfo" />
+    <result column="swhw_ver" jdbcType="VARCHAR" property="swhwVer" />
+    <result column="dual_access" jdbcType="INTEGER" property="dualAccess" />
+    <result column="location" jdbcType="VARCHAR" property="location" />
+    <result column="utc_offset" jdbcType="VARCHAR" property="utcOffset" />
+    <result column="dst_start" jdbcType="VARCHAR" property="dstStart" />
+    <result column="dst_end" jdbcType="VARCHAR" property="dstEnd" />
+    <result column="note" jdbcType="VARCHAR" property="note" />
+    <result column="network_element_status" jdbcType="INTEGER" property="networkElementStatus" />
+    <result column="country_code_id" jdbcType="BIGINT" property="countryCodeId" />
+    <result column="indb_time" jdbcType="TIMESTAMP" property="indbTime" />
+    <result column="update_time" jdbcType="TIMESTAMP" property="updateTime" />
+  </resultMap>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Long">
+    delete from network_element
+    where id = #{id,jdbcType=BIGINT}
+  </delete>
+  <insert id="insert" parameterType="com.ss.entities.NetworkElement">
+    insert into network_element (id, node_type, node_id, 
+      gt, ip, vendor_info, 
+      swhw_ver, dual_access, location, 
+      utc_offset, dst_start, dst_end, 
+      note, network_element_status, country_code_id, 
+      indb_time, update_time)
+    values (#{id,jdbcType=BIGINT}, #{nodeType,jdbcType=VARCHAR}, #{nodeId,jdbcType=VARCHAR}, 
+      #{gt,jdbcType=VARCHAR}, #{ip,jdbcType=VARCHAR}, #{vendorInfo,jdbcType=VARCHAR}, 
+      #{swhwVer,jdbcType=VARCHAR}, #{dualAccess,jdbcType=INTEGER}, #{location,jdbcType=VARCHAR}, 
+      #{utcOffset,jdbcType=VARCHAR}, #{dstStart,jdbcType=VARCHAR}, #{dstEnd,jdbcType=VARCHAR}, 
+      #{note,jdbcType=VARCHAR}, #{networkElementStatus,jdbcType=INTEGER}, #{countryCodeId,jdbcType=BIGINT}, 
+      #{indbTime,jdbcType=TIMESTAMP}, #{updateTime,jdbcType=TIMESTAMP})
+  </insert>
+  <update id="updateByPrimaryKey" parameterType="com.ss.entities.NetworkElement">
+    update network_element
+    set node_type = #{nodeType,jdbcType=VARCHAR},
+      node_id = #{nodeId,jdbcType=VARCHAR},
+      gt = #{gt,jdbcType=VARCHAR},
+      ip = #{ip,jdbcType=VARCHAR},
+      vendor_info = #{vendorInfo,jdbcType=VARCHAR},
+      swhw_ver = #{swhwVer,jdbcType=VARCHAR},
+      dual_access = #{dualAccess,jdbcType=INTEGER},
+      location = #{location,jdbcType=VARCHAR},
+      utc_offset = #{utcOffset,jdbcType=VARCHAR},
+      dst_start = #{dstStart,jdbcType=VARCHAR},
+      dst_end = #{dstEnd,jdbcType=VARCHAR},
+      note = #{note,jdbcType=VARCHAR},
+      network_element_status = #{networkElementStatus,jdbcType=INTEGER},
+      country_code_id = #{countryCodeId,jdbcType=BIGINT},
+      indb_time = #{indbTime,jdbcType=TIMESTAMP},
+      update_time = #{updateTime,jdbcType=TIMESTAMP}
+    where id = #{id,jdbcType=BIGINT}
+  </update>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Long" resultMap="BaseResultMap">
+    select id, node_type, node_id, gt, ip, vendor_info, swhw_ver, dual_access, location, 
+    utc_offset, dst_start, dst_end, note, network_element_status, country_code_id, indb_time, 
+    update_time
+    from network_element
+    where id = #{id,jdbcType=BIGINT}
+  </select>
+  <select id="selectAll" resultMap="BaseResultMap">
+    select id, node_type, node_id, gt, ip, vendor_info, swhw_ver, dual_access, location, 
+    utc_offset, dst_start, dst_end, note, network_element_status, country_code_id, indb_time, 
+    update_time
+    from network_element
+  </select>
+</mapper>
